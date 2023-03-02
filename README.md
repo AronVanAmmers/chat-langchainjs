@@ -82,3 +82,20 @@ If you'd like to chat your own data, you need to:
 2. Change the prompt used in `pages/api/util.ts` - right now this tells the chatbot to only respond to questions about LangChain, so in order to get it to work on your data you'll need to update it accordingly.
 
 The server should work just the same 😄
+
+## Contributing
+
+If you want to run chat-langchainjs against a development version of the langchainjs library, at the moment you have to do the following (because langchain is using yarn 2 and this repo is using yarn 1):
+
+In `langchainjs/langchain`:
+
+```bash
+yarn run tsc --declaration --outDir dist/ --watch
+```
+
+In `chat-langchainjs`:
+
+```bash
+rm -r node_modules/langchain/dist
+ln -sF ../langchainjs/langchain/dist  node_modules/langchain
+```
